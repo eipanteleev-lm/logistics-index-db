@@ -23,6 +23,12 @@ SQLite code for stock operations data storage and preview
 |  |-operations_monthly.sql
 |  |-operations_weekly.sql
 |  |-stock_optimum.sql
+|-.gitignore
 |-changelog.sql
 |-init.sql
+|-README.md
 ```
+
+## Database schema
+
+![schema](logistics-index-db.png)

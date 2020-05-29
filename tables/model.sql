@@ -10,3 +10,7 @@ CREATE TABLE "model" (
 	"stats"	        TEXT,
 	"created"	    TEXT
 );
+
+--changeset 60065265:alter:table:model:add:column:type
+
+alter table "model" add column "type" text not null default 'default';

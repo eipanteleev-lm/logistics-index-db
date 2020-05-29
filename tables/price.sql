@@ -10,3 +10,7 @@ CREATE TABLE "price" (
 	"purchase_price"	NUMERIC,
 	CONSTRAINT "pk_price" PRIMARY KEY("store_id","product_code")
 );
+
+--changeset 60065265:alter:table:price:add:column:is_perishable
+
+alter table "price" add column "is_perishable" integer default 0;
