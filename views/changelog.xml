@@ -21,4 +21,8 @@
     <sqlFile path="stock_optimum_weekly.sql" splitStatements="false" relativeToChangelogFile="true"/>
   </changeSet>
 
+  <changeSet author="60065265" id="create:view:stock_optimum_monthly" context="all" runOnChange="true" >
+    <sqlFile path="stock_optimum_monthly.sql" splitStatements="false" relativeToChangelogFile="true"/>
+  </changeSet>
+
 </databaseChangeLog>
