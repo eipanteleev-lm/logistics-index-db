@@ -22,10 +22,12 @@ Liquibase formatted SQLite code for stock operations data storage and preview
 |  |-operations_daily.sql
 |  |-operations_monthly.sql
 |  |-operations_weekly.sql
-|  |-stock_optimum.sql
+|  |-stock_optimum_monthly.sql
+|  |-stock_optimum_weekly.sql
 |-.gitignore
-|-changelog.sql
+|-changelog.xml
 |-init.sql
+|-logistics-index-db.png
 |-README.md
 ```
 
