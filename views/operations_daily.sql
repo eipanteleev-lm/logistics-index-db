@@ -1,7 +1,7 @@
-create view if not exists operations_daily as
+create or replace view operations_daily as
 with ops as (
 select
-    date(created) as created,
+    created::date as created,
     store_id,
 	product_code,
 	reason,
@@ -21,7 +21,7 @@ from (
 		end) as reason,
 		created
 	from operation) op
-group by date(created), store_id, reason)
+group by created::date, product_code, store_id, reason)
 select 
     op.created, 
 	op.store_id,
@@ -66,19 +66,19 @@ on sn.created = op.created
     and sn.reason = 'spec_needs'
 left join (
 	select 
-		date(op.created) as created,
+		op.created::date as created,
 		op.store_id,
 		op.product_code,
 		op.stock - op.quantity as stock
 	from operation op
 	inner join 
 		(select 
-			date(created) as created,
+			created::date as created,
 			store_id, 
 			product_code,
 			min(created) as fdt
 		from operation
-		group by date(created), store_id, product_code) dt
+		group by created::date, store_id, product_code) dt
 	on dt.fdt = op.created
 	    and dt.store_id = op.store_id
 		and dt.product_code = op.product_code) dts

@@ -1,12 +1,12 @@
-create view if not exists stock_optimum_weekly as
+create or replace view stock_optimum_weekly as
 with ops as (
 select
     store_id,
 	product_code,
-    sale + defect + theft + "unkown" + spec_needs as quantity,
+    sale + defect + theft + "unknown" + spec_needs as quantity,
 	row_number() over(
 	    partition by store_id, product_code 
-		order by sale + defect + theft + "unkown" + spec_needs desc
+		order by sale + defect + theft + "unknown" + spec_needs desc
 	) as rn
 from operations_weekly)
 select 
@@ -21,6 +21,6 @@ inner join (
 		count(*) as len
 	from ops
 	group by store_id, product_code) l
-on l.store_id = p.store_id and p.product_code
+on l.store_id = p.store_id and l.product_code = p.product_code
 inner join ops q on p.store_id = q.store_id and p.product_code = q.product_code 
 where q.rn = cast(l.len*(p.selling_price/(p.selling_price+p.storage_cost)) as int) + 1;

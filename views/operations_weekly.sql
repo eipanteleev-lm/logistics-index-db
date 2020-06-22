@@ -1,7 +1,7 @@
-create view if not exists operations_weekly as
+create or replace view operations_weekly as
 with ops as (
 select
-    date(created, 'weekday 0') as created,
+    "created"::date + (6 - extract(dow from "created")) * interval '1 day' as created,
     store_id,
 	product_code,
 	reason,
@@ -21,7 +21,7 @@ from (
 		end) as reason,
 		created
 	from operation) op
-group by date(created, 'weekday 0'), store_id, reason)
+group by "created"::date + (6 - extract(dow from "created")) * interval '1 day', product_code, store_id, reason)
 select 
     op.created, 
 	op.store_id,
@@ -66,19 +66,19 @@ on sn.created = op.created
     and sn.reason = 'spec_needs'
 left join (
 	select 
-		date(op.created, 'weekday 0') as created,
+		op."created"::date + (6 - extract(dow from op."created")) * interval '1 day' as created,
 		op.store_id,
 		op.product_code,
 		op.stock - op.quantity as stock
 	from operation op
 	inner join 
 		(select 
-			date(created, 'weekday 0') as created,
+			"created"::date + (6 - extract(dow from "created")) * interval '1 day' as created,
 			store_id, 
 			product_code,
 			min(created) as fdt
 		from operation
-		group by date(created, 'weekday 0'), store_id, product_code) dt
+		group by "created"::date + (6 - extract(dow from "created")) * interval '1 day', store_id, product_code) dt
 	on dt.fdt = op.created
 	    and dt.store_id = op.store_id
 		and dt.product_code = op.product_code) dts

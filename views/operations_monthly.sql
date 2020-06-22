@@ -1,7 +1,7 @@
-create view if not exists operations_monthly as
+create or replace view operations_monthly as
 with ops as (
 select
-    date(created, 'start of month', '+1 month', '-1 day') as created,
+    date_trunc('month', "created") + interval '1 month' - interval '1 day' as created,
     store_id,
 	product_code,
 	reason,
@@ -21,7 +21,7 @@ from (
 		end) as reason,
 		created
 	from operation) op
-group by date(created, 'start of month', '+1 month', '-1 day'), store_id, reason)
+group by date_trunc('month', "created") + interval '1 month' - interval '1 day', product_code, store_id, reason)
 select 
     op.created, 
 	op.store_id,
@@ -66,19 +66,19 @@ on sn.created = op.created
     and sn.reason = 'spec_needs'
 left join (
 	select 
-		date(op.created, 'start of month', '+1 month', '-1 day') as created,
+		date_trunc('month', op."created") + interval '1 month' - interval '1 day' as created,
 		op.store_id,
 		op.product_code,
 		op.stock - op.quantity as stock
 	from operation op
 	inner join 
 		(select 
-			date(created, 'start of month', '+1 month', '-1 day') as created,
+			date_trunc('month', "created") + interval '1 month' - interval '1 day' as created,
 			store_id, 
 			product_code,
 			min(created) as fdt
 		from operation
-		group by date(created, 'start of month', '+1 month', '-1 day'), store_id, product_code) dt
+		group by date_trunc('month', "created") + interval '1 month' - interval '1 day', store_id, product_code) dt
 	on dt.fdt = op.created
 	    and dt.store_id = op.store_id
 		and dt.product_code = op.product_code) dts
