@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset 60065265:create:table:model
+--changeset eipanteleev-lm:create:table:model
 
 CREATE TABLE "model" (
 	"id"	        bigserial not null,

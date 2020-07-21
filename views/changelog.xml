@@ -5,23 +5,23 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
   
-  <changeSet author="60065265" id="create:view:operations_daily" context="all" runOnChange="true" >
+  <changeSet author="eipanteleev-lm" id="create:view:operations_daily" context="all" runOnChange="true" >
     <sqlFile path="operations_daily.sql" splitStatements="false" relativeToChangelogFile="true"/>
   </changeSet>
 
-  <changeSet author="60065265" id="create:view:operations_weekly" context="all" runOnChange="true" >
+  <changeSet author="eipanteleev-lm" id="create:view:operations_weekly" context="all" runOnChange="true" >
     <sqlFile path="operations_weekly.sql" splitStatements="false" relativeToChangelogFile="true"/>
   </changeSet>
 
-  <changeSet author="60065265" id="create:view:operations_monthly" context="all" runOnChange="true" >
+  <changeSet author="eipanteleev-lm" id="create:view:operations_monthly" context="all" runOnChange="true" >
     <sqlFile path="operations_monthly.sql" splitStatements="false" relativeToChangelogFile="true"/>
   </changeSet>
 
-  <changeSet author="60065265" id="create:view:stock_optimum_weekly" context="all" runOnChange="true" >
+  <changeSet author="eipanteleev-lm" id="create:view:stock_optimum_weekly" context="all" runOnChange="true" >
     <sqlFile path="stock_optimum_weekly.sql" splitStatements="false" relativeToChangelogFile="true"/>
   </changeSet>
 
-  <changeSet author="60065265" id="create:view:stock_optimum_monthly" context="all" runOnChange="true" >
+  <changeSet author="eipanteleev-lm" id="create:view:stock_optimum_monthly" context="all" runOnChange="true" >
     <sqlFile path="stock_optimum_monthly.sql" splitStatements="false" relativeToChangelogFile="true"/>
   </changeSet>
 
