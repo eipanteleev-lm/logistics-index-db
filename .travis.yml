@@ -16,7 +16,7 @@ before_script:
   - docker-compose config
 
 script:
-  - docker-compose run --rm -v .:/liquibase/changelog liquibase
+  - docker-compose run --rm -v "$PWD":/liquibase/changelog liquibase
 
 after_script:
   - docker-compose down
