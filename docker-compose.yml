@@ -24,8 +24,8 @@ services:
       - postgres
     volumes:
       - ".:/liquibase/changelog" 
-    command: "--url=jdbc:postgresql://postgres:5432/${POSTGRES_USER:-postgres} \ 
-      --changeLogFile=/liquibase/changelog/changelog.xml \
+    command: "/liquibase/liquibase --url=jdbc:postgresql://postgres:5432/${POSTGRES_USER:-postgres} \ 
+      --changeLogFile=changelog/changelog.xml \
       --username=${POSTGRES_USER:-postgres} \
       --password=${POSTGRES_PASSWORD:-postgres} \
       --logLevel=INFO \
