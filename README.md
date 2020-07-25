@@ -1,5 +1,7 @@
 # logistics-index-db
 
+[![Build Status](https://travis-ci.com/eipanteleev-lm/logistics-index-db.svg?branch=master)](https://travis-ci.com/eipanteleev-lm/logistics-index-db)
+
 Liquibase formatted SQL code for [logistics-index](https://github.com/eipanteleev-lm/logistics-index) project
 
 ## Summary
