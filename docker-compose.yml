@@ -18,13 +18,13 @@ services:
 
   liquibase:
     container_name: liquibase_liquibase
-    image: liquibase/liquibase:latest
+    image: liquibase/liquibase:3.10.x
     restart: on-failure:5
     depends_on: 
       - postgres
     volumes:
       - ".:/liquibase/changelog" 
-    command: "/liquibase/liquibase --url=jdbc:postgresql://postgres:5432/${POSTGRES_USER:-postgres} \ 
+    command: "--url=jdbc:postgresql://postgres:5432/${POSTGRES_USER:-postgres} \ 
       --changeLogFile=changelog/changelog.xml \
       --username=${POSTGRES_USER:-postgres} \
       --password=${POSTGRES_PASSWORD:-postgres} \
