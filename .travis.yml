@@ -16,7 +16,7 @@ before_script:
   - docker-compose config
 
 script:
-  - docker-compose run --rm liquibase
+  - docker-compose run --rm gradle
 
 after_script:
   - docker-compose down
