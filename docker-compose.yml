@@ -27,4 +27,4 @@ services:
       - ".:/home/gradle/project"
     working_dir: "/home/gradle/project"
     entrypoint: ["gradle"]
-    command: ["waitForDb", "update"]
+    command: ["waitForDb", "update", "test"]

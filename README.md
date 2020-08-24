@@ -12,25 +12,40 @@ Liquibase formatted SQLite code for stock operations data storage and preview
 
 ```
 .
-|-data
-|  |-changelog.xml
-|  |-prices.sql
-|-tables
-|  |-model.sql
-|  |-operation.sql
-|  |-price.sql
-|-views
-|  |-changelog.xml
-|  |-operations_daily.sql
-|  |-operations_monthly.sql
-|  |-operations_weekly.sql
-|  |-stock_optimum_monthly.sql
-|  |-stock_optimum_weekly.sql
+|-gradle
+|  |-wrapper
+|  |  |-gradle-wrapper.jar
+|  |  |-gradle-wrapper.properties
+|-src
+|  |-main
+|  |  |-db
+|  |  |  |-data
+|  |  |  |  |-changelog.xml
+|  |  |  |  |-operations.sql
+|  |  |  |  |-prices.sql
+|  |  |  |-tables
+|  |  |  |  |-model.sql
+|  |  |  |  |-operation.sql
+|  |  |  |  |-price.sql
+|  |  |  |-views
+|  |  |  |  |-changelog.xml
+|  |  |  |  |-operations_daily.sql
+|  |  |  |  |-operations_monthly.sql
+|  |  |  |  |-operations_weekly.sql
+|  |  |  |  |-stock_optimum_monthly.sql
+|  |  |  |  |-stock_optimum_weekly.sql
+|  |  |  |-changelog.xml
+|  |  |  |-init.sql
+|  |-test
+|  |  |-groovy
+|  |  |  |-BaseTestSpecification.groovy
 |-.env
+|-.gitattributes
 |-.gitignore
-|-changelog.xml
+|-.travis.yml
 |-docker-compose.yml
-|-init.sql
+|-gradlew
+|-gradlew.bat
 |-logistics-index-db.png
 |-README.md
 ```
@@ -43,5 +58,5 @@ Liquibase formatted SQLite code for stock operations data storage and preview
 
 ```sh
 docker-compose config
-docker-compose up
+docker-compose run gradle
 ```
