@@ -16,17 +16,15 @@ services:
     ports: 
       - "5432:5432"
 
-  liquibase:
-    container_name: liquibase_liquibase
-    image: liquibase/liquibase:3.10.x
-    restart: on-failure:5
+  gradle:
+    container_name: liquibase_gradle
+    image: gradle:latest
     depends_on: 
       - postgres
+    environment: 
+      <<: *common-env
     volumes:
-      - ".:/liquibase/changelog" 
-    command: "--url=jdbc:postgresql://postgres:5432/${POSTGRES_USER:-postgres} \ 
-      --changeLogFile=changelog/changelog.xml \
-      --username=${POSTGRES_USER:-postgres} \
-      --password=${POSTGRES_PASSWORD:-postgres} \
-      --logLevel=INFO \
-      update"
+      - ".:/home/gradle/project"
+    working_dir: "/home/gradle/project"
+    entrypoint: ["gradle"]
+    command: ["waitForDb", "update", "test"]
